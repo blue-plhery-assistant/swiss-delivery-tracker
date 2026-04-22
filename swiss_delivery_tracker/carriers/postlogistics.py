@@ -52,7 +52,7 @@ def fetch(tracking_number):
     latest_desc = latest.get("Description", "")
 
     status = "in_transit"
-    if latest_status in ("DEL", "DLV"):
+    if latest_status in ("DEL", "DLV", "POD", "SIG"):
         status = "delivered"
     elif latest_status == "NTF":
         status = "pending"
