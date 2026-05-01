@@ -80,6 +80,7 @@ CARRIER_ALIASES = {
     "postlogistics": "PostLogistics",
     "sunyou": "SunYou",
     "sun you": "SunYou",
+    "ups": "UPS",
 }
 
 

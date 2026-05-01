@@ -14,7 +14,8 @@ CLI tool for tracking package deliveries in Switzerland. Supports multiple carri
 | Hermes Einrichtungs-Service | Direct API | No |
 | Spring GDS | PostNL International API | No |
 | PostLogistics | Direct API (eosapi) | No |
-| Dachser | Page scraping (limited) | Full tracking URL needed |
+| Dachser | JSON API | Full tracking URL needed |
+| UPS | ⚠️ **Experimental** — CDP browser scraping | Chrome + websocket-client |
 
 Most carriers use free, public APIs with no API keys needed.
 
@@ -83,12 +84,15 @@ swiss-delivery-tracker --data-file /path/to/deliveries.json list
 - **Quickpac**: Also cross-checks Planzer for cross-border ETAs on Quickpac shipments.
 - **Cainiao/AliExpress**: Tracks AliExpress parcels via Cainiao's global API. Includes ETA when available.
 - **SunYou**: Uses a JSONP endpoint at sypost.net.
-- **Dachser**: Requires the full tracking URL with authentication parameters (not just a tracking number). Best-effort parsing since Dachser uses a JS SPA.
+- **Dachser**: Uses a JSON API behind the SPA. Requires the full tracking URL with authentication hash (from Dachser email notifications).
+- **UPS** ⚠️ **Experimental**: Scrapes ups.com via Chrome DevTools Protocol. Requires a running Chrome with `--remote-debugging-port=18800 --remote-allow-origins=*` and the `websocket-client` Python package. Slow (~20s per lookup) and may break if UPS changes their frontend.
 - **Planzer**: Supports Ikea-style order numbers (e.g. `84693.0055089536` extracts `55089536`).
 
 ## No Dependencies
 
 This tool uses only Python standard library (`urllib`, `json`, `http.cookiejar`). No `requests`, no `aiohttp`, no heavy packages. Python 3.9+ required.
+
+The **UPS carrier** optionally requires `websocket-client` (`pip install websocket-client`) and a running Chrome instance.
 
 ## License
 

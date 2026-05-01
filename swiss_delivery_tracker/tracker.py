@@ -6,7 +6,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-from .carriers import swiss_post, quickpac, cainiao, sunyou, planzer, hermes, spring_gds, postlogistics, dachser
+from .carriers import swiss_post, quickpac, cainiao, sunyou, planzer, hermes, spring_gds, postlogistics, dachser, ups
 from .models import normalize_carrier
 
 DEFAULT_DATA_DIR = Path.home() / ".swiss-delivery-tracker"
@@ -23,6 +23,7 @@ CARRIER_MODULES = {
     "Spring GDS": spring_gds,
     "PostLogistics": postlogistics,
     "Dachser": dachser,
+    "UPS": ups,
 }
 
 
